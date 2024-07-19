@@ -34,3 +34,10 @@ scoket.on("recieve-location", (data) => {
     markers[id] = L.marker([latitude, longitude]).addTo(map);
   }
 });
+
+scoket.on("user-disconnected", (id) => {
+  if (markers[id]) {
+    map.removeLayer(markers[id]);
+    delete markers[id];
+  }
+});
